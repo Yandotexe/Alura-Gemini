@@ -1,0 +1,305 @@
+/* Importa a fonte Chakra Petch do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* Define a cor da Crunchyroll como uma variável CSS */
+:root {
+    --crunchyroll-orange: #F47521;
+}
+
+/* Estiliza o corpo da página */
+body {
+    font-family: "Chakra Petch", sans-serif; /* Define a fonte padrão */
+    background-image: url('bk\ img.jpeg'); /* Adiciona a imagem de fundo */
+    background-size: cover; /* Tamanho da imagem */
+    background-position: center; /* Posição da imagem */
+    background-attachment: fixed; /* Mantém a imagem fixa */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    background-color: #DDDDDD; /* Cor de fallback caso a imagem não carregue */
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
+    min-height: 100vh; /* Preenche a altura total da viewport */
+    margin: 0; /* Remove a margem padrão */
+    padding: 0; /* Remove o padding padrão */
+    position: relative; /* Posiciona o elemento */
+    box-sizing: border-box; /* Todos os elementos incluem padding e border em sua largura total */
+    width: 100%; /* O body ocupe toda a largura disponível */
+    overflow-x: hidden; /* Impede a barra de rolagem horizontal */
+}
+
+/* Adiciona uma camada de sobreposição para melhorar a legibilidade */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
+    z-index: -1;
+}
+
+/* Estiliza os títulos h1 (incluindo "Anime search") */
+h1 {
+    font-size: 2.5rem; /* Tamanho da fonte para o título principal */
+    color: var(--crunchyroll-orange); /* Cor laranja da Crunchyroll */
+    text-align: center; /* Centraliza o texto */
+    letter-spacing: 0.4rem; /* Espaçamento entre letras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+}
+
+/* Estilo para a mensagem "Anime não encontrado" */
+#resultados-pesquisa p {
+    font-size: 2.5rem; /* Mesmo tamanho do h1 */
+    color: var(--crunchyroll-orange); /* Mesma cor do h1 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Mesma sombra do h1 */
+    text-align: center; /* Centraliza o texto */
+    font-weight: bold; /* Texto em negrito */
+    margin: 1rem 0; /* Adiciona margem acima e abaixo */
+}
+
+/* Estiliza as seções da página */
+section {
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    margin-bottom: 3rem; /* Espaçamento abaixo de cada seção */
+}
+
+/* Estiliza os inputs dentro das seções */
+section input {
+    width: 30rem; /* Largura dos inputs */
+    border: none; /* Remove a borda padrão */
+    padding: 1rem; /* Espaçamento interno */
+    border-radius: 1.5rem; /* Borda arredondada */
+    margin-bottom: 1rem; /* Espaçamento abaixo dos inputs */
+    color: #45474B; /* Cor do texto */
+    font-size: 1rem; /* Tamanho da fonte */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Estiliza os botões dentro das seções */
+section button {
+    padding: 0.8rem 1.2rem; /* Espaçamento interno do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 1.5rem; /* Borda arredondada */
+    background-color: var(--crunchyroll-orange); /* Cor de fundo do botão */
+    color: #F5F7F8; /* Cor do texto do botão */
+    font-size: 1rem; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
+}
+
+/* Adiciona efeito hover ao botão de pesquisa */
+section button:hover {
+    background-color: #D35400; /* Muda a cor de fundo ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra mais intensa */
+}
+
+/* Estiliza a caixa de resultados da pesquisa */
+.resultados-pesquisa {
+    width: 60rem; /* Largura máxima da caixa de resultados */
+    height: 46vh; /* Altura máxima da caixa de resultados */
+    overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+    margin-top: 1rem; /* Espaçamento acima da caixa de resultados */
+    padding: 1rem; /* Espaçamento interno */
+    border-radius: 0.6rem; /* Borda arredondada */
+}
+
+/* Estiliza cada item de resultado */
+.item-resultado {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 0.6rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Estiliza o link que envolve todo o conteúdo do item */
+.resultado-link {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Efeito hover para o item de resultado */
+.item-resultado:hover {
+    transform: scale(1.02); /* Aumenta o tamanho em 2% (aproximadamente 4px para um item de 200px) */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove o text-decoration no hover */
+.resultado-link:hover {
+    text-decoration: none;
+}
+
+/* Estiliza os títulos dentro dos itens de resultado */
+.item-resultado h2 {
+    font-size: 1.7rem; /* Aumentado de 1.5rem para 1.7rem */
+    color: var(--crunchyroll-orange); /* Mantém a cor laranja da Crunchyroll para os títulos */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para a mensagem "Anime não encontrado" */
+#resultados-pesquisa p {
+    font-size: 2.5rem; /* Mesmo tamanho do h1 */
+    color: var(--crunchyroll-orange); /* Mesma cor do h1 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Mesma sombra do h1 */
+    text-align: center; /* Centraliza o texto */
+    font-weight: bold; /* Texto em negrito */
+    margin: 1rem 0; /* Adiciona margem acima e abaixo */
+}
+
+/* Estiliza os links dentro dos itens de resultado */
+.item-resultado a {
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    color: var(--crunchyroll-orange); /* Mantém a cor laranja da Crunchyroll para os links */
+    font-weight: bold; /* Mantém o peso da fonte em negrito para os links */
+    font-size: 1.2rem; /* Adicionado tamanho de fonte */
+}
+
+/* Estiliza os links quando são passados o mouse sobre */
+.item-resultado a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    color: #D35400; /* Uma versão mais escura do laranja para o hover */
+}
+
+/* Estiliza a descrição meta dentro dos itens de resultado */
+.descricao-meta {
+    color: #000000; /* Muda a cor para preto */
+    font-weight: bold; /* Adiciona negrito */
+    margin: 0.5rem 0; /* Margem acima e abaixo */
+    font-size: 1.1rem; /* Aumentado de 1rem (padrão) para 1.1rem */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+}
+
+/* Estiliza o rodapé da página */
+footer {
+    background-color: #F5F7F8; /* Cor de fundo do rodapé */
+    color: #45474B; /* Cor do texto */
+    text-align: center; /* Alinha o texto ao centro */
+    padding: 0; /* Espaçamento interno */
+    width: 100%; /* Largura total da página */
+    position: absolute; /* Posiciona o rodapé */
+    bottom: 0; /* Alinha ao fundo da página */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+/* Media Queries para responsividade */
+
+/* Para tablets e telas menores */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Tamanho da fonte em telas menores */
+        letter-spacing: 0.2rem; /* Espaçamento entre letras em telas menores */
+    }
+
+    section input {
+        width: 25rem; /* Largura dos inputs em telas menores */
+        padding: 0.8rem; /* Espaçamento interno em telas menores */
+    }
+
+    .resultados-pesquisa {
+        width: 40rem; /* Largura da caixa de resultados em telas menores */
+        height: 40vh; /* Altura da caixa de resultados em telas menores */
+    }
+
+    .item-resultado h2 {
+        font-size: 1.3rem; /* Tamanho da fonte dos títulos em telas menores */
+    }
+
+    #resultados-pesquisa p {
+        font-size: 2rem; /* Tamanho da mensagem "Anime não encontrado" em telas menores */
+    }
+}
+
+/* Para smartphones */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem; /* Tamanho da fonte em telas pequenas */
+        letter-spacing: 0.1rem; /* Espaçamento entre letras em telas pequenas */
+    }
+
+    section input {
+        width: 90%; /* Largura total dos inputs em telas pequenas */
+        max-width: 20rem; /* Largura máxima para evitar inputs muito largos */
+    }
+
+    section button {
+        padding: 0.6rem 1rem; /* Espaçamento interno do botão em telas pequenas */
+        font-size: 0.9rem; /* Tamanho da fonte do botão em telas pequenas */
+    }
+
+    .resultados-pesquisa {
+        width: 90%; /* Largura da caixa de resultados em telas pequenas */
+        height: 50vh; /* Altura da caixa de resultados em telas pequenas */
+    }
+
+    .item-resultado h2 {
+        font-size: 1.1rem; /* Tamanho da fonte dos títulos em telas pequenas */
+    }
+
+    .descricao-meta {
+        font-size: 0.9rem; /* Tamanho da fonte da descrição em telas pequenas */
+    }
+
+    #resultados-pesquisa p {
+        font-size: 1.8rem; /* Tamanho da mensagem "Anime não encontrado" em telas pequenas */
+    }
+}
+
+/* Para telas muito pequenas */
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.5rem; /* Tamanho da fonte em telas muito pequenas */
+    }
+
+    section input {
+        width: 95%; /* Largura quase total em telas muito pequenas */
+        padding: 0.5rem; /* Espaçamento interno reduzido */
+    }
+
+    .item-resultado {
+        padding: 0.5rem; /* Espaçamento interno reduzido para itens de resultado */
+    }
+
+    .item-resultado h2 {
+        font-size: 1rem; /* Tamanho da fonte dos títulos em telas muito pequenas */
+    }
+
+    .descricao-meta {
+        font-size: 0.8rem; /* Tamanho da fonte da descrição em telas muito pequenas */
+    }
+
+    #resultados-pesquisa p {
+        font-size: 1.5rem; /* Tamanho da mensagem "Anime não encontrado" em telas muito pequenas */
+    }
+}
+
+/* Estiliza as imagens */
+img {
+    max-width: 100%; /* Impede que as imagens ultrapassem a largura de seus contêineres */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Regras gerais para melhorar a responsividade */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
